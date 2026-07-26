@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply text-ink-900 dark:text-ink-100 font-sans antialiased transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-primary-200 text-primary-800;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Pill-shaped buttons, inspired by the reference app's rounded-full CTAs */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold
+      transition-all duration-200 ease-out active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-600 to-accent-500 text-white shadow-glow-primary
+      hover:brightness-110 hover:shadow-glow-primary hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white/70 dark:bg-white/5 text-ink-700 dark:text-ink-100 border border-white/60 dark:border-white/10
+      backdrop-blur-md hover:border-primary-300 dark:hover:border-primary-500/50 hover:text-primary-700
+      dark:hover:text-primary-300 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-primary-700 dark:text-primary-300 hover:bg-primary-50 dark:hover:bg-white/5;
+  }
+
+  /* Glass card — translucent, blurred, soft-bordered, like the reference screens */
+  .card {
+    @apply bg-white/70 dark:bg-white/[0.04] rounded-3xl border border-white/60 dark:border-white/10
+      shadow-glass dark:shadow-glass-dark backdrop-blur-xl transition-colors duration-300;
+  }
+
+  .glass-panel {
+    @apply bg-white/50 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10
+      backdrop-blur-lg transition-colors duration-300;
+  }
+
+  .page-enter {
+    @apply animate-fadeUp;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
